@@ -1,0 +1,14 @@
+GET http://localhost:3005/recipe/0
+###
+
+GET http://localhost:3005/recipe/a
+###
+
+GET http://localhost:3005/yield/10
+###
+
+GET http://localhost:3005/recipe-label/udon-noodle-soup
+###
+
+GET http://localhost:3005/recipe-label/udon-noodle
+###
