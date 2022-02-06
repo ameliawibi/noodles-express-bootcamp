@@ -1,73 +1,33 @@
-import express from 'express';
-import { read } from './jsonFileStorage.js';
+import express from "express";
+import { recipes } from "./recipes.js";
 
 const app = express();
 
-function mid(req,res,next) {
-  //console.log(req.route);
-  //console.log(req.query);
-  console.log(req.params);
-  next();
-}
+// Set view engine
+app.set("view engine", "ejs");
+// serve static files
+app.use(express.static("public"));
 
-const extractRecipeByIndex = (request, response) => {
-  read('data.json', (err, data) => {
-    const {index} = request.params
-    const recipe = data.recipes[index]
-    //console.log(recipe);
-      if (!recipe) {
-      response.status(404).send('Sorry, we cannot find that!');
-      return;
-    }
-    // Respond with the name at the index specified in the URL
-    response.send(recipe);
+const getRecipeDetails = (req, res) => {
+  let recipeLabel = req.params.label;
+  let convert = recipeLabel.replace(/-/g, " ").toLowerCase();
+
+  let recipesFound = recipes.recipe.filter((item) => {
+    return convert === item.title.toLowerCase();
   });
+  //console.log(recipesFound);
+
+  if (recipesFound.length === 0) {
+    res.status(404).send("Sorry, we cannot find that!");
+    // stop further execution in this callback
+    return;
+  }
+
+  let newData = {};
+  newData["recipe"] = recipesFound;
+  res.render("recipes", newData);
 };
 
-// index is a URL path parameter
-app.get('/recipe/:index', mid, extractRecipeByIndex);
+app.get("/recipe/:label", getRecipeDetails);
 
-const extractRecipesByYield = (request, response) => {
-  read('data.json', (err, data) => {
-    let recipesFound = data.recipes.filter((recipe) => {
-      return +request.params.yield === recipe.yield;
-    })
-
-    if (recipesFound.length === 0) {
-      response.status(404).send('Sorry, we cannot find that!');
-      // stop further execution in this callback
-      return;
-    } 
-    // Respond with the recipe at the portion in the URL
-    response.send(recipesFound);
-  });
-};
-
-// yield is a URL path parameter
-app.get('/yield/:yield', mid, extractRecipesByYield);
-
-const extractRecipesByLabel = (request, response) => {
-  read('data.json', (err, data) => {
-
-    let recipeLabel = request.params.label;
-    let convert = recipeLabel.replace(/-/g,' ').toLowerCase();
-
-    let recipesFound = data.recipes.filter((recipe) => {
-      return convert === recipe.label.toLowerCase();
-    })
-
-    if (recipesFound.length === 0) {
-      response.status(404).send('Sorry, we cannot find that!');
-      // stop further execution in this callback
-      return;
-    } 
-    // Respond with the recipe at the portion in the URL
-    response.send(recipesFound);
-  });
-};
-
-// yield is a URL path parameter
-app.get('/recipe-label/:label', mid, extractRecipesByLabel);
-
-
-app.listen(3005);
+app.listen(3004);
