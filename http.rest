@@ -12,3 +12,6 @@ GET http://localhost:3004/recipe/scallion-oil-noodle
 
 GET http://localhost:3004/recipe/a
 ###
+
+GET http://localhost:3004/
+###

@@ -1,12 +1,11 @@
 import express from "express";
-import { recipes } from "./recipes.js";
+import { recipes } from "../recipes.js";
+export const router = express.Router();
 
-const app = express();
-
-// Set view engine
-app.set("view engine", "ejs");
-// serve static files
-app.use(express.static("public"));
+router.get("/", (req, res) => {
+  console.log("Request for homepage received");
+  res.render("home");
+});
 
 const getRecipeDetails = (req, res) => {
   let recipeLabel = req.params.label;
@@ -28,6 +27,4 @@ const getRecipeDetails = (req, res) => {
   res.render("recipes", newData);
 };
 
-app.get("/recipe/:label", getRecipeDetails);
-
-app.listen(3004);
+router.get("/recipe/:label", getRecipeDetails);
