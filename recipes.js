@@ -1,3 +1,32 @@
+export const recipeshome = {
+  recipehome: [
+    {
+      title: "Chicken Recipes",
+      ingredient: "chicken",
+      list: [
+        "Chicken Noodle Soup",
+        "Chicken Fettuccine",
+      ],
+      image: "../chicken.jpeg",
+      imagealt: "chicken",
+      ahref1: "/recipe/chicken-noodle-soup",
+      ahref2: "/recipe/chicken-fettuccine",
+    },
+    {
+      title: "Onion Recipes",
+      ingredient: "onion",
+      list: [
+        "Scallion Oil Noodle",
+        "Onion Pasta",
+      ],
+      image: "../onion.jpeg",
+      imagealt: "onion",
+      ahref1: "/recipe/scallion-oil-noodle",
+      ahref2: "/recipe/onion-pasta",
+    }
+  ]
+}
+
 export const recipes = {
   recipe: [
     {

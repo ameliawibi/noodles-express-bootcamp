@@ -1,9 +1,8 @@
 import express from "express";
-import { recipes } from "../recipes.js";
+import { recipes, recipeshome } from "../recipes.js";
 export const router = express.Router();
 
 router.get("/", (req, res) => {
-  console.log("Request for homepage received");
   res.render("home");
 });
 
@@ -14,7 +13,6 @@ const getRecipeDetails = (req, res) => {
   let recipesFound = recipes.recipe.filter((item) => {
     return convert === item.title.toLowerCase();
   });
-  //console.log(recipesFound);
 
   if (recipesFound.length === 0) {
     res.status(404).send("Sorry, we cannot find that!");
@@ -28,3 +26,24 @@ const getRecipeDetails = (req, res) => {
 };
 
 router.get("/recipe/:label", getRecipeDetails);
+
+const getRecipeByIngredient = (req, res) => {
+  
+  let recipeList = req.params.ingredient;
+  
+  let recipesFound = recipeshome.recipehome.filter((item) => {
+    return recipeList === item.ingredient
+  });
+ 
+  if (recipesFound.length === 0) {
+    res.status(404).send("Sorry, we cannot find that!");
+    // stop further execution in this callback
+    return;
+  }
+
+  let newData = {};
+  newData["recipehome"] = recipesFound;
+  res.render("recipeshome", newData);
+};
+
+router.get("/recipeshome/:ingredient", getRecipeByIngredient);

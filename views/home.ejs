@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Noodles Recipe</title>
+  </head>
+
+  <body>
+    <div class="container-fluid text-center">
+      <nav class="navbar navbar-light bg-light justify-content-center">
+        <a class="navbar-brand" href="/">Home</a>
+      </nav>
+
+      <h1 id="header" class="d-lg-none">Noodles App</h1>
+      <img src = "../noodles.jpeg" class="mx-auto d-none d-lg-block" alt="noodles" width="40%" height="40%"></img>
+      <div class="container bg-light p-4">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="row">
+      <div class="col-12">
+      <h2>Chicken Noodles</h2>
+      
+        <div id="recipes-list">
+        <ul>
+          <a href="/recipe/chicken-noodle-soup"
+            ><li>Chicken Noodle Soup</li></a
+          >
+          <a href="/recipe/chicken-fettuccine"
+            ><li>Chicken Fettuccine</li></a
+          >
+        </ul>
+      </div>
+      </div>
+      </div>
+      <div class="row">
+    <div class="col-12">
+      <h2>Onion Noodles</h2>
+
+      <div id="recipes-list">
+        <ul>
+          <a href="/recipe/scallion-oil-noodle"
+            ><li>Scallion Oil Noodle</li></a
+          >
+          <a href="/recipe/onion-pasta"><li>Onion Pasta</li></a>
+        </ul>
+      </div>
+    </div>
+    </div>
+    </div>
+    
+    <div class="col-12 col-lg-6">
+    <h2>By ingredients</h2>
+
+      <div id="recipes-list">
+        <ul>
+          <a href="/recipeshome/chicken"><li>Chicken Recipes</li></a>
+          <a href="/recipeshome/onion"><li>Onion Recipes</li></a>
+        </ul>
+      </div>
+      </div>
+      </div>
+      </div>
+
+      
+    </div>
+    <!-- Will need JS is using any components: https://getbootstrap.com/docs/5.0/components -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
